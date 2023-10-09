@@ -8,14 +8,10 @@ let isPlaying = false;
 
 fileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
-  console.log(file);
-  console.log(file.name);
+  // console.log(file);
+  // console.log(file.name);
 
-  let urlVal = file.name;
-
-  //REMOVE THIS LINE IF YOU MAKE IT LOCAL
-  urlVal = 'MKBHD.mp3';
-  //REMOVE THIS LINE IF YOU MAKE IT LOCAL
+  let urlVal = URL.createObjectURL(file);
 
   let player = new Tone.Player({
     url: urlVal,
@@ -49,14 +45,9 @@ fileInput.addEventListener("change", (event) => {
     pitchShift.pitch = pitchRange.value *-1;
     console.log(pitchShift.pitch);
   });
-  
-  
-  btn.addEventListener('click', () => {
-      player.start();
-  });
 
-  btnStop.addEventListener('click', ()=> {
-      player.start();
-      player.stop();
-  })
+
+  btn.onclick = () => player.start();
+  btnStop.onclick = () => player.stop();
+
 });
